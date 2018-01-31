@@ -7,6 +7,7 @@ import random
 import math
 from Graph import *
 
+
 def is_square(integer):
     root = math.sqrt(integer)
     if int(root + 0.5) ** 2 == integer:
@@ -56,7 +57,6 @@ def sumSquareList(k):  # Creates the Adjacency Matrix
     return adjDict
 
 
-
 def dfs_iterative(graph, start):  # Non-recursive DFS I found Online, still working on learning how to write my own
     stack, path = [start], []
 
@@ -76,10 +76,9 @@ def legalSequence(seq):
     Flag = True
 
     for i in range(len(seq) - 1):
-        if not is_square(seq[i] + seq[i+1]):
+        if not is_square(seq[i] + seq[i + 1]):
             Flag = False
     return Flag
-
 
 
 num = 300
@@ -92,6 +91,7 @@ for key in adjacency_matrix:
     adjList.append(adjacency_matrix)
 
 graph = Graph(adjacency_matrix)
+
 # print(graph)
 
 
@@ -146,10 +146,21 @@ graph = Graph(adjacency_matrix)
 #
 # print(graph)
 
-for i in range(1, 200):
+k = 15
+for i in range(15, 30):
     adjacency_matrix = sumSquareList(i)
     graph = Graph(adjacency_matrix)
-    s = time.time()
-    graph.find_all_paths(int(i / 2 + 1), random.randint(1, i))
-    e = time.time()
-    print(i, "\t", e-s, sep = '')
+    legalPaths = []
+    for j in range(1, i + 1):
+        for k in range(1, i + 1):
+            # print(j, k)
+            paths = graph.find_all_paths(j, k)
+            for item in paths:
+                if len(item) == i:
+                    print(item)
+    blank = input()
+# adjacency_matrix = sumSquareList(15)
+# g = Graph(adjacency_matrix)
+# p = g.find_all_paths(8, 9)
+# for item in p:
+#     print(item)
