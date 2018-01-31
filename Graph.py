@@ -117,6 +117,14 @@ class Graph(object):
                     if len(p) == max:
                         return p
 
+    def findLongestPath(self, start_vertex, end_vertex):
+        allPaths = self.find_all_paths(start_vertex, end_vertex)
+        longPath = []
+        for item in allPaths:
+            if len(item) > len(longPath):
+                longPath = item
+        return longPath
+
     def find_all_paths(self, start_vertex, end_vertex, path=[]):
         """ find all paths from start_vertex to
             end_vertex in graph """
