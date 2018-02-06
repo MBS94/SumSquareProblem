@@ -99,12 +99,39 @@ def legalSequence(seq):
             Flag = False
     return Flag
 
-r = 26
-for i in range(1, 90):
-    graph = Graph(sumSquareList(i, i + r))
-    for j in range(i, i + r):
-        for k in range(j, i + r):
-            if len(graph.findLongestPath(j, k)) == r + 1:
-                print("(", i, ",", i+r, ") ", graph.findLongestPath(j, k), sep = '')
-            # else:
-            #     print("(", i, ",", i+r, ") BAD RANGE")
+# r = 26
+# for i in range(1, 90):
+#     graph = Graph(sumSquareList(i, i + r))
+#     for j in range(i, i + r):
+#         for k in range(j, i + r):
+#             if len(graph.findLongestPath(j, k)) == r + 1:
+#                 print("(", i, ",", i+r, ") ", graph.findLongestPath(j, k), sep = '')
+#             # else:
+#             #     print("(", i, ",", i+r, ") BAD RANGE")
+
+
+for n in range(25, 40):
+    goodPaths = []
+
+    graph = Graph(sumSquareList(1, n))
+    for i in range(1, n + 1):
+        for j in range(i, n + 1):
+            paths = graph.find_all_paths(i, j)
+            for path in paths:
+                if len(path) == n:
+                    goodPaths.append(path)
+
+    # for item in goodPaths:
+    #     print(item)
+
+    sumSequences = []
+
+    for item in goodPaths:
+        sumSeq = []
+        for i in range(len(item) - 1):
+            sumSeq.append(item[i] + item[i + 1])
+        sumSequences.append(sumSeq)
+
+    for item in sumSequences:
+        print(sum(item))
+    print("NEW LINE")

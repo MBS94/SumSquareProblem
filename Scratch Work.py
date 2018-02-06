@@ -96,3 +96,17 @@
 #                 if len(item) >= len(longestPath):
 #                     longestPath = item
 #     print(longestPath, "K", k, "Length", len(longestPath))
+
+
+
+# for i in range(len(sumSequences[0])):
+#     if sumSequences[0][i] == sumSequences[1][i] and\
+#             sumSequences[1][i] == sumSequences[2][i] and\
+#             sumSequences[0][i] == sumSequences[2][i]:
+#         pass
+#     else:
+#         sumSequences[0][i], sumSequences[1][i], sumSequences[2][i] = "X", "X", "X"
+#
+# for item in sumSequences:
+#     print(item)
+
