@@ -4,15 +4,25 @@ import time, random, math
 from Graph import *
 from MathFunctions import *
 
-for r in range(22, 35):
-    for i in range(1, 150):
-        graph = Graph(sumSquareList(i, i + r))
-        for j in range(i, i + r):
-            for k in range(j, i + r):
-                if len(graph.findLongestPath(j, k)) == r + 1:
-                    print(r + 1, ", (", i, ",", i + r, ") ", graph.findLongestPath(j, k), sep='')
-                # else:
+# for r in range(22, 35):
+#     for i in range(1, 150):
+#         graph = Graph(sumSquareList(i, i + r))
+#         for j in range(i, i + r):
+#             for k in range(j, i + r):
+#                 if len(graph.findLongestPath(j, k)) == r + 1:
+#                     print(r + 1, ", (", i, ",", i + r, ") ", graph.findLongestPath(j, k), sep='')
+#                 else:
                 #     print("(", i, ",", i+r, ") BAD RANGE")
+
+
+for n in range(1, 40):
+    g = Graph(SumDiffSquareList(1, n))
+    for i in range(1, n + 1):
+        for j in range(i, n + 1):
+            if len(g.findLongestPath(i, j)) == n:
+                print("N=", n, i, j, g.findLongestPath(i, j))
+
+# testGraph = Graph(SumDiffSquareList())
 
 # for n in range(25, 30):
 #     goodPaths = []

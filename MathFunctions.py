@@ -26,6 +26,17 @@ def sumSquareList(m, n):  # Creates the Adjacency Matrix for Squares
                 adjDict[i].append(j)
     return adjDict
 
+def SumDiffSquareList(m, n):
+    adjDict = {}
+    for i in range(m, n + 1):
+        adjDict[i] = []
+    for i in range(m, n + 1):
+        for j in range(m, n + 1):
+            if is_square(i + j) and i != j:
+                adjDict[i].append(j)
+            if is_square(math.fabs(i - j)) and math.fabs(i - j) != 1 and i != j:
+                adjDict[i].append(j)
+    return adjDict
 
 def sumCubeList(k):  # Creates the Adjacency Matrix for Cubes
     adjDict = {}
