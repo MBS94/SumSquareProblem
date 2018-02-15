@@ -3,49 +3,34 @@ __author__ = 'Michael Byrd'
 import time, random, math
 from Graph import *
 from MathFunctions import *
+import csv
 
-# for r in range(22, 35):
-#     for i in range(1, 150):
-#         graph = Graph(sumSquareList(i, i + r))
-#         for j in range(i, i + r):
-#             for k in range(j, i + r):
-#                 if len(graph.findLongestPath(j, k)) == r + 1:
-#                     print(r + 1, ", (", i, ",", i + r, ") ", graph.findLongestPath(j, k), sep='')
-#                 else:
-                #     print("(", i, ",", i+r, ") BAD RANGE")
+legalPaths = {}
 
+for N in range(15, 40):
+    b = time.time()
+    g = Graph(sumSquareList(1, N))
+    legalPaths[N] = {}
+    for i in range(1, N + 1):
+        legalPaths[N][i] = []
+        for j in range(i, N + 1):
+            paths = g.find_all_paths(i, j)
+            for item in paths:
+                if len(item) == N:
+                    legalPaths[N][i].append(item)
+    e = time.time()
+    print(N, e-b)
+writeList = []
 
-for n in range(1, 40):
-    g = Graph(SumDiffSquareList(1, n))
-    for i in range(1, n + 1):
-        for j in range(i, n + 1):
-            if len(g.findLongestPath(i, j)) == n:
-                print("N=", n, i, j, g.findLongestPath(i, j))
+for key0 in legalPaths:
+    for key1 in legalPaths[key0]:
+        for item in legalPaths[key0][key1]:
+            # writeList.append(["N:", len(item), "\t (", item[0], ", ", item[-1], ") \t", item])
+            writeList.append([len(item), item[0], item[-1], item])
+            # print(len(item), "\t", item[0], "\t", item[-1], "\t", item)
 
-# testGraph = Graph(SumDiffSquareList())
+print(writeList[3])
 
-# for n in range(25, 30):
-#     goodPaths = []
-#
-#     graph = Graph(sumSquareList(1, n))
-#     for i in range(1, n + 1):
-#         for j in range(i, n + 1):
-#             paths = graph.find_all_paths(i, j)
-#             for path in paths:
-#                 if len(path) == n:
-#                     goodPaths.append(path)
-#
-#     for item in goodPaths:
-#         print(item)
-#
-#     sumSequences = []
-#
-#     for item in goodPaths:
-#         sumSeq = []
-#         for i in range(len(item) - 1):
-#             sumSeq.append(item[i] + item[i + 1])
-#         sumSequences.append(sumSeq)
-
-# for item in sumSequences:
-#     print(sum(item))
-# print("NEW LINE")
+with open("output.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerows(writeList)
