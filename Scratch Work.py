@@ -110,3 +110,44 @@
 # for item in sumSequences:
 #     print(item)
 
+# class Stack:
+#     def __init__(self):
+#         self.items = []
+#
+#     def isEmpty(self):
+#         return self.items == []
+#
+#     def push(self, item):
+#         self.items.append(item)
+#
+#     def pop(self):
+#         return self.items.pop()
+#
+#     def peek(self):
+#         return self.items[len(self.items) - 1]
+#
+#     def size(self):
+#         return len(self.item)
+
+# class vertex(object):
+#     def __init__(self, k, adjacency):
+#         self.value = k
+#         self.adj = adjacency
+#         self.discover = False
+#
+#     def discover(self):
+#         self.discover = True
+
+# def dfs_iterative(graph, start):  # Non-recursive DFS I found Online, still working on learning how to write my own
+#     stack, path = [start], []
+#
+#     while stack:
+#         # print(stack)
+#         vertex = stack.pop()
+#         if vertex in path:
+#             continue
+#         path.append(vertex)
+#         for neighbor in graph[vertex]:
+#             stack.append(neighbor)
+#         print(path)
+#     return path
