@@ -1,4 +1,5 @@
 __author__ = 'Michael Byrd'
+# Laptop
 
 import time, random, math
 from Graph import *
