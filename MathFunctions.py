@@ -17,6 +17,7 @@ def is_cube(integer):
     else:
         return False
 
+
 def sumSquareList(m, n):  # Creates the Adjacency Matrix for Squares
     adjDict = {}
     for i in range(m, n + 1):
@@ -24,6 +25,19 @@ def sumSquareList(m, n):  # Creates the Adjacency Matrix for Squares
     for i in range(m, n + 1):
         for j in range(m, n + 1):
             if is_square(i + j) and i != j:
+                adjDict[i].append(j)
+    return adjDict
+
+
+def SquareSumDiffList(m, n):
+    adjDict = {}
+    for i in range(m, n + 1):
+        adjDict[i] = []
+    for i in range(m, n + 1):
+        for j in range(m, n + 1):
+            if is_square(i + j) and i != j:
+                adjDict[i].append(j)
+            if is_square(math.fabs(i - j)) and i != j and math.fabs(i-j) != 1:
                 adjDict[i].append(j)
     return adjDict
 
@@ -37,6 +51,7 @@ def sumCubeList(k):  # Creates the Adjacency Matrix for Cubes
             if is_cube(i + j) and i != j:
                 adjDict[i].append(j)
     return adjDict
+
 
 def legalSequence(seq):
     Flag = True
