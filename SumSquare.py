@@ -8,18 +8,34 @@ import csv
 import ast
 from SequenceFunctions import *
 
-sequenceList = []
+legalPaths = {}
 
-f = open('15-39.csv', 'r')
-reader = csv.reader(f)
-for row in reader:
-    sequenceList.append((row[3]))
-f.close()
+for N in range(15, 20):
+    b = time.time()
+    g = Graph(sumSquareList(1, N))
+    legalPaths[N] = {}
+    for i in range(1, N + 1):
+        legalPaths[N][i] = []
+        for j in range(i, N + 1):
+            paths = g.find_all_paths(i, j)
+            for item in paths:
+                if len(item) == N:
+                    legalPaths[N][i].append(item)
+    e = time.time()
+    print(N, e-b)
+writeList = []
 
-
-
-with open("output.csv", "w", newline="") as f:
-    writer = csv.writer(f)
-    writer.writerows(writeList)
+# for key0 in legalPaths:
+#     for key1 in legalPaths[key0]:
+#         for item in legalPaths[key0][key1]:
+#             # writeList.append(["N:", len(item), "\t (", item[0], ", ", item[-1], ") \t", item])
+#             writeList.append([len(item), item[0], item[-1], item])
+#             # print(len(item), "\t", item[0], "\t", item[-1], "\t", item)
+#
+# print(writeList[3])
+#
+# with open("output.csv", "w", newline="") as f:
+#     writer = csv.writer(f)
+#     writer.writerows(writeList)
 
 ## GitHub
