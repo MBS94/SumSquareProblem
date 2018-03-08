@@ -39,3 +39,7 @@ writeList = []
 #     writer.writerows(writeList)
 
 ## GitHub
+
+testGraph = Graph(sumSquareList(1, 15))
+
+print(testGraph)
