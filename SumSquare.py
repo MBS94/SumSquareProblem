@@ -1,5 +1,5 @@
 __author__ = 'Michael Byrd'
-# Laptop
+
 
 import time, random, math
 from Graph import *
@@ -24,3 +24,7 @@ f.close()
 #         for j in range(0, len(sequenceList[i]), 2):
 #             print(sequenceList[i][j] + sequenceList[i][j+1])
 
+
+g = Graph(sumSquareList(1, 15))
+
+paths = g.find_all_paths()
