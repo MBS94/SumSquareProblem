@@ -10,20 +10,20 @@ from SequenceFunctions import *
 
 legalPaths = {}
 
-for N in range(15, 20):
-    b = time.time()
-    g = Graph(sumSquareList(1, N))
-    legalPaths[N] = {}
-    for i in range(1, N + 1):
-        legalPaths[N][i] = []
-        for j in range(i, N + 1):
-            paths = g.find_all_paths(i, j)
-            for item in paths:
-                if len(item) == N:
-                    legalPaths[N][i].append(item)
-    e = time.time()
-    print(N, e-b)
-writeList = []
+# for N in range(15, 25):
+#     b = time.time()
+#     g = Graph(sumSquareList(1, N))
+#     legalPaths[N] = {}
+#     for i in range(1, N + 1):
+#         legalPaths[N][i] = []
+#         for j in range(i, N + 1):
+#             paths = g.find_all_paths(i, j)
+#             for item in paths:
+#                 if len(item) == N:
+#                     legalPaths[N][i].append(item)
+#     e = time.time()
+#     print(N, e-b)
+# writeList = []
 
 # for key0 in legalPaths:
 #     for key1 in legalPaths[key0]:
@@ -40,6 +40,20 @@ writeList = []
 
 ## GitHub
 
-testGraph = Graph(sumSquareList(1, 15))
 
-print(testGraph)
+### Basic Tests of Finding a Single Legal Path
+
+for N in range(26, 27):
+    g = Graph(sumSquareList(1, N))
+
+    for i in range(1, N + 1):
+        for j in range(i, N + 1):
+            if len(g.findLongestPath(i, j)) == N:
+                print("N", N, "I", i, "J", j, g.findLongestPath(i, j), len(g.findLongestPath(i, j)))
+
+# for N in range(1, 31):
+#     g = Graph(SquareSumDiffList(1, N))
+#     for i in range(1, N + 1):
+#         for j in range(i, N + 1):
+#             if len(g.findLongestPath(i, j)) == N:
+#                 print("N", N, "I", i, "J", j, g.findLongestPath(i, j), len(g.findLongestPath(i, j)))
