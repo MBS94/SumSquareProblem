@@ -40,7 +40,10 @@ legalPaths = {}
 
 ## GitHub
 
-for N in range(15, 26):
+
+### Basic Tests of Finding a Single Legal Path
+
+for N in range(26, 27):
     g = Graph(sumSquareList(1, N))
 
     for i in range(1, N + 1):
@@ -48,6 +51,9 @@ for N in range(15, 26):
             if len(g.findLongestPath(i, j)) == N:
                 print("N", N, "I", i, "J", j, g.findLongestPath(i, j), len(g.findLongestPath(i, j)))
 
-
-
-# print(testGraph)
+# for N in range(1, 31):
+#     g = Graph(SquareSumDiffList(1, N))
+#     for i in range(1, N + 1):
+#         for j in range(i, N + 1):
+#             if len(g.findLongestPath(i, j)) == N:
+#                 print("N", N, "I", i, "J", j, g.findLongestPath(i, j), len(g.findLongestPath(i, j)))
