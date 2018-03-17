@@ -15,13 +15,13 @@ def QRAdjList(n, p):  # Creates the Adjacency Matrix for Squares
 
     QRList = []
 
-    for i in range(1, n + 1):
+    for i in range(1, math.floor( (p-1)/2 ) + 1):
         qr = (i ** 2) % p
         if qr not in QRList:
             QRList.append(qr)
 
     QRList.sort()
-    print(QRList, len(QRList))
+    # print("QR", QRList, len(QRList))
     adjDict = {}
     for i in range(1, n + 1):
         adjDict[i] = []
@@ -38,5 +38,12 @@ def QRAdjList(n, p):  # Creates the Adjacency Matrix for Squares
 # g = Graph(QRAdjList(12, 29))
 
 # print(len(g.findLongestPath(1, 2)))
+for i in range(2, 31):
+    for j in range(i + 1, i + 40):
+        if is_prime(j):
+            g = Graph(QRAdjList(i, j))
+            if len(g.findLongestPath()) == i:
+                print("P:", j, "Edge Count:", len(g.edges()))
+                print("N:", i, g.findLongestPath())
 
-print(QRAdjList(12, 31))
+# print(Graph(QRAdjList(12, 149)).edges())
