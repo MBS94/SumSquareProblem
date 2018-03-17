@@ -18,7 +18,7 @@ def is_cube(integer):
         return False
 
 
-def sumSquareList(m, n):  # Creates the Adjacency Matrix for Squares
+def sumSquareList(m, n):  # Creates the Adjacency List for Squares
     adjDict = {}
     for i in range(m, n + 1):
         adjDict[i] = []
