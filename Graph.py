@@ -117,12 +117,14 @@ class Graph(object):
                     if len(p) == max:
                         return p
 
-    def findLongestPath(self, start_vertex, end_vertex):
-        allPaths = self.find_all_paths(start_vertex, end_vertex)
+    def findLongestPath(self):
         longPath = []
-        for item in allPaths:
-            if len(item) > len(longPath):
-                longPath = item
+        for i in range(len(self.vertices())):
+            for j in range(i, len(self.vertices())):
+                allPaths = self.find_all_paths(self.vertices()[i], self.vertices()[j])
+                for item in allPaths:
+                    if len(item) > len(longPath):
+                        longPath = item
         return longPath
     ##################################
     def find_all_paths(self, start_vertex, end_vertex, path=[]):
