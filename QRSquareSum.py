@@ -11,39 +11,66 @@ from SequenceFunctions import *
 legalPaths = {}
 
 
-def QRAdjList(n, p):  # Creates the Adjacency Matrix for Squares
-
+def QRList(p):
     QRList = []
-
     for i in range(1, math.floor( (p-1)/2 ) + 1):
         qr = (i ** 2) % p
         if qr not in QRList:
             QRList.append(qr)
-
     QRList.sort()
-    # print("QR", QRList, len(QRList))
+    return QRList
+
+
+
+def QRAdjList(n, p):  # Creates the Adjacency Matrix for Squares
+    qrList = QRList(p)
     adjDict = {}
     for i in range(1, n + 1):
         adjDict[i] = []
     for i in range(1, n + 1):
         for j in range(1, n + 1):
-            if ((i+j) % p) in QRList and i != j:
+            if ((i+j) % p) in qrList and i != j:
                 adjDict[i].append(j)
     return adjDict
 
+def min_prime_dirac(n):
+    flag = True
+    p = n + 1
+    while flag:
+        if is_prime(p):
+            qrList = QRList(p)
+            adjList = QRAdjList(n, p)
+
+            flag1 = True
+            for key in adjList:
+                # print(key)
+                # print(p, len(adjList[key]))
+                if len(adjList[key]) < (n / 2):
+                    flag1 = False
+            if flag1:
+                return p
+            # print("P:", p)
+        p += 1
 
 
-# print(QRAdjList(12, 13))
+print(Graph(QRAdjList(8, 37)).edges())
 
-# g = Graph(QRAdjList(12, 29))
+# for N in range(5, 51):
+#     for p in range(N + 1, 400):
+#         if is_prime(p):
+#             x = (QRAdjList(N, p))
+#             # print("Prime:", p)
+#             flag = True
+#             for k in x:
+#                 if len(x[k]) < N/2:
+#                     flag = False
+#             if flag:
+#                 print("N", N, "Prime:", p)
 
-# print(len(g.findLongestPath(1, 2)))
-for i in range(2, 31):
-    for j in range(i + 1, i + 40):
-        if is_prime(j):
-            g = Graph(QRAdjList(i, j))
-            if len(g.findLongestPath()) == i:
-                print("P:", j, "Edge Count:", len(g.edges()))
-                print("N:", i, g.findLongestPath())
+b = time.time()
+for N in range(3, 150):
+    print("N:", N, "Prime:", min_prime_dirac(N))
+    min_prime_dirac(N)
+e = time.time()
 
-# print(Graph(QRAdjList(12, 149)).edges())
+print(e-b)
